@@ -9,7 +9,7 @@ interface FormData {
   role: string;
 }
 
-export const UserForm = () => {
+export const SignForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -39,9 +39,27 @@ export const UserForm = () => {
         className="flex flex-col bg-white gap-7 w-1/3 p-10"
       >
         <TextField
+          label="Name"
+          name="Name"
+          type="name"
+          value={formData.email}
+          onChange={handleChange}
+          variant="outlined"
+          required
+        />
+        <TextField
           label="Email"
           name="email"
           type="email"
+          value={formData.email}
+          onChange={handleChange}
+          variant="outlined"
+          required
+        />
+        <TextField
+          label="EDV"
+          name="EDV"
+          type="EDV"
           value={formData.email}
           onChange={handleChange}
           variant="outlined"
@@ -58,7 +76,7 @@ export const UserForm = () => {
         />
 
         <Link to={"/"} className="flex px-1 text-xs justify-end text-[#007BC0]">
-          Esqueci minha senha
+          Ja tenho uma conta
         </Link>
         <Button
           type="submit"
@@ -67,15 +85,6 @@ export const UserForm = () => {
         >
           Submit
         </Button>
-        <div className="text-sm">
-          Ainda não tem uma conta?
-          <Link
-            to={"/signUp"}
-            className="px-2 text-sm text-[#007BC0]"
-          >
-            Increver-se
-          </Link>
-        </div>
       </Box>
     </>
   );
