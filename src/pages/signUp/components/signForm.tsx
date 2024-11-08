@@ -29,7 +29,7 @@ export const SignForm = () => {
     }));
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => { };
 
   return (
     <>
@@ -38,6 +38,7 @@ export const SignForm = () => {
         onSubmit={handleSubmit}
         className="flex flex-col bg-white gap-7 w-1/3 p-10"
       >
+        <h1 className="text-2xl">Sign Up</h1>
         <TextField
           label="Name"
           name="Name"

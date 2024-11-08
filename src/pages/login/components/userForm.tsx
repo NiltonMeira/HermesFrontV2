@@ -38,6 +38,7 @@ export const UserForm = () => {
         onSubmit={handleSubmit}
         className="flex flex-col bg-white gap-7 w-1/3 p-10"
       >
+        <h1 className="text-2xl">Login</h1>
         <TextField
           label="Email"
           name="email"
