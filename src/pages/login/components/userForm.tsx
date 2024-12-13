@@ -1,6 +1,8 @@
 import { Box, Button, TextField } from "@mui/material";
-import { ChangeEvent, useState } from "react";
-import { Link } from "react-router-dom";
+import { ChangeEvent, FormEventHandler, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import api from "../../../services/api";
 
 interface FormData {
   name: string;
@@ -17,6 +19,8 @@ export const UserForm = () => {
     role: "",
   });
 
+  const navigate = useNavigate();
+
   const handleChange = (
     e: ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }
@@ -29,7 +33,25 @@ export const UserForm = () => {
     }));
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await api.post("auth", {
+        email: formData.email,
+        password: formData.password,
+      });
+
+      if (response.data && response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("id", response.data.id);
+
+        toast.success("Login bem-sucedido");
+        navigate("/home");
+      }
+    } catch (err) {
+      toast.error("Erro ao fazer login");
+    }
+  };
 
   return (
     <>
@@ -70,10 +92,7 @@ export const UserForm = () => {
         </Button>
         <div className="text-sm">
           Ainda não tem uma conta?
-          <Link
-            to={"/signUp"}
-            className="px-2 text-sm text-[#007BC0]"
-          >
+          <Link to={"/signUp"} className="px-2 text-sm text-[#007BC0]">
             Increver-se
           </Link>
         </div>

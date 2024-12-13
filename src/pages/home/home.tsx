@@ -1,19 +1,15 @@
-import { IconBox } from "./components/IconBox"
+import { AppBar } from "../../components/appbar";
+import { Teste } from "./components/Teste";
 
-export const HomePage = () => {
-    let images = ["./CRIN.svg"]
-    let titles = ["Operações"]
-
+export const Home = () => {
     return(
-        <>
-            <h1>Menu operacional</h1>
-            <div className="grid grid-cols-2 gap-4">
-                {images.map((image, index)=> (
-                    <IconBox key={index} image={image} title={titles[index]}/>
-                ))}
-
+            <div className="flex flex-col h-screen">
+                <AppBar/>
+                <div className="flex flex-grow">
+                    <main className="flex-grow p-4 pt-10">
+                        <Teste/>
+                    </main>
+                </div>
             </div>
-
-        </>
-    )
+        );
 }
